@@ -1,0 +1,17 @@
+name: "Rmarkdown with navbar"                                
+output_dir: "."
+navbar:
+  title: "Cherry Blossom"
+  type: inverse
+  left: 
+    - text: "Home"
+      icon: fa-home
+      href: https://lunafrauhammer.github.io/
+  right:
+    - text: "GitHub Project"
+      icon: fa-github
+      href: https://github.com/lunafrauhammer/Attitudinal_Congruence
+output:
+  html_document:
+    theme: readable
+    css: style.css

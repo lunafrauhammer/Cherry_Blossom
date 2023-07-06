@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Luna Frauhammer" />
+
+
+<title>Cherry Blossom Prediction Contest</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Cherry Blossom</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="https://lunafrauhammer.github.io/">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/lunafrauhammer/Attitudinal_Congruence">
+    <span class="fa fa-github"></span>
+     
+    GitHub Project
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Cherry Blossom Prediction Contest</h1>
+<h4 class="author">Luna Frauhammer</h4>
+<h4 class="date">1/31/2023</h4>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#set-up-r-and-read-in-data">Set up R and read in data</a></li>
+<li><a href="#step-1-predict-2023-bloom-dates-for-washington-liestal-and-kyoto">Step 1: Predict 2023 bloom dates for Washington, Liestal, and Kyoto</a>
+<ul>
+<li><a href="#calculate-historic-dormacy-release-dates">Calculate Historic Dormacy Release Dates</a></li>
+<li><a href="#calculate-mean-january-temperature">Calculate Mean January Temperature</a></li>
+<li><a href="#estimate-2023-drd">Estimate 2023 DRD</a></li>
+<li><a href="#prediction">Prediction</a></li>
+</ul></li>
+<li><a href="#step-2-predict-2023-vancouver-bloom-date">Step 2: Predict 2023 Vancouver Bloom Date</a>
+<ul>
+<li><a href="#to-estimate-model-fit-model-historic-bloom-dates-in-washington-d.c.">To estimate model fit: Model historic bloom dates in Washington, D.C.</a></li>
+<li><a href="#model-historic-bloom-dates-in-vancouver">Model historic bloom dates in Vancouver</a></li>
+<li><a href="#estimate-2023-drd-and-mean-january-temperature">Estimate 2023 DRD and mean January temperature:</a></li>
+<li><a href="#predict-2023-bloom-date-in-vancouver">Predict 2023 Bloom Date in Vancouver</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Goal of this contest is to predict the cherry tree bloom dates at four different locations in the next 10 years. I will first predict only this year’s bloom dates, using four different predictors in a linear regression: <br></p>
+<ol style="list-style-type: decimal">
+<li>Past bloom dates starting in 1954 <br></li>
+<li>Each year’s estimated dormacy release date (DRD; explanation see below) <br></li>
+<li>The modeled temperature at the DRD <br></li>
+<li>The mean temperature in January <br></li>
+</ol>
+<p>For Vancouver, I have to proceed differently, because there exist no records of past bloom dates. I thus use the USA-NPN dataset (containing records of bloom dates in different years and different cities in the US) to model past Vancouver bloom dates. I then use this modeled data to predict future bloom dates. <br> To predict the bloom dates of the years 2024 - 2033, I will use predicted DRD dates, temperatures as well as the predicted temperature in March and April (macht das Sinn? Oder soll ich hier einfach direkt nur die früheren Jahre als Prädiktor nehmen?)</p>
+</div>
+<div id="set-up-r-and-read-in-data" class="section level1">
+<h1>Set up R and read in data</h1>
+<pre class="r"><code># setwd(&quot;/Users/lunafrauhammer/Library/CloudStorage/OneDrive-UniversitaetDuisburg-Essen/Sonstiges/CherryBlossom&quot;)
+library(tidyverse)
+library(data.table)
+library(lubridate)
+library(Metrics)
+library(showtext)
+library(sysfonts)
+
+doy_to_date &lt;- function (year, doy) {
+  strptime(paste(year, doy, sep = &#39;-&#39;), &#39;%Y-%j&#39;) %&gt;% # create date object
+    strftime(&#39;%Y-%m-%d&#39;) # translate back to date string in ISO 8601 format
+}
+
+cherry &lt;- read.csv(&quot;peak-bloom-prediction-main/data/washingtondc.csv&quot;) %&gt;% 
+  bind_rows(read.csv(&quot;peak-bloom-prediction-main/data/liestal.csv&quot;)) %&gt;% 
+  bind_rows(read.csv(&quot;peak-bloom-prediction-main/data/kyoto.csv&quot;))
+
+cherry &lt;- subset(cherry, year &gt;= 1954) 
+# I will only use data from 1954 onwards because this is the year the weather
+# data starts. 
+
+# Let&#39;s take a look at the historic bloom dates: 
+city_Colors&lt;- c(kyoto = &quot;lightpink1&quot;, liestal = &quot;lightskyblue&quot;, 
+                washingtondc = &quot;palegreen3&quot;)
+ggplot(cherry, aes(x = year, y = bloom_doy)) +
+    geom_text(label = &quot;\u273F&quot;, aes(color = location),
+              size=4, family = &quot;Arial Unicode MS&quot;, alpha = 1) +
+   #  scale_color_discrete(name = &quot;location&quot;) +
+    theme_classic() +
+    labs(x = &quot;Year&quot;, y = &quot;Full Blossom Day of the Year&quot;) +
+    geom_smooth(method = &quot;lm&quot;, fullrange = TRUE, se = FALSE,
+                aes(color = location), show.legend = FALSE) +
+   # geom_smooth(method = &quot;lm&quot;, fullrange = TRUE, aes(fill = location), alpha = 0.2,)
+    scale_color_manual(values=city_Colors, name = &quot;Location&quot;, 
+                       labels = c(&quot;Kyoto&quot;, &quot;Liestal-Weideli&quot;, &quot;Washington, D.C.&quot;)) + 
+    ggtitle(&quot;Historic Bloom Dates&quot;) + 
+    theme(plot.title = element_text(face = &quot;bold&quot;, hjust = 0.5)) </code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code># ggsave(&quot;historicDates.png&quot;, p1)
+# get the weather information: 
+library(rnoaa) 
+stations &lt;- ghcnd_stations()
+weatherWash &lt;- ghcnd_search(&quot;USC00186350&quot;)
+weatherLies &lt;- ghcnd_search(&quot;GME00127786&quot;)
+weatherKyot &lt;- ghcnd_search(&quot;JA000047759&quot;)
+weatherVan &lt;- ghcnd_search(&quot;CA001108395&quot;)
+weather &lt;- rbind(weatherWash$tmax, weatherLies$tmax, weatherKyot$tmax, 
+                 weatherVan$tmax)
+# I am using the maximum daily temperatures. 
+
+# Prepare data set: 
+weather$location &lt;- NA
+weather[weather$id == &quot;USC00186350&quot;, ]$location &lt;- &quot;Washington&quot;
+weather[weather$id == &quot;GME00127786&quot;, ]$location &lt;- &quot;Liestal&quot;
+weather[weather$id == &quot;JA000047759&quot;, ]$location &lt;- &quot;Kyoto&quot;
+weather[weather$id == &quot;CA001108395&quot;, ]$location &lt;- &quot;Vancouver&quot;
+
+weather$date &lt;- as.Date(weather$date, &quot;%Y/%m/%d&quot;)
+weather$year &lt;- year(weather$date)
+weather$date.within &lt;- format(weather$date, format=&quot;%m-%d&quot;) 
+weather$doy &lt;- yday(weather$date) # day of the year </code></pre>
+</div>
+<div id="step-1-predict-2023-bloom-dates-for-washington-liestal-and-kyoto" class="section level1">
+<h1>Step 1: Predict 2023 bloom dates for Washington, Liestal, and Kyoto</h1>
+<p>In the first step, I only predict the 2023 bloom dates for those cities for which I have historic bloom data, i.e., Washington, Liestal, and Kyoto. Like stated above, I will use the historic bloom dates as well as each year’s DRD, modeled DRD temperature and mean January temperature as predictors.</p>
+<div id="calculate-historic-dormacy-release-dates" class="section level2">
+<h2>Calculate Historic Dormacy Release Dates</h2>
+<p>The dormacy release date (DRD) is the day in late Winter / early Spring when the temperature trend reverses from going down to going up again. Since cherry blossoms need both periods of decreasing / colder and increasing / warmer temperatures to bloom, the DRD can be an important predictor of the cherry blossom bloom date (Chung et al., 2011). <br></p>
+<p>In order to get each year’s DRD, I fit a quadratic regression on the temperatures between October 1st and March 31st. I then use the minimum of this function as estimation of the DRD.</p>
+<pre class="r"><code># I first need a new yearly organizing variable that changes on October 1st 
+# instead of on January 1st:  
+weather$yearWinter &lt;- NA
+for(y in 1:nrow(weather)){
+  year.margin &lt;- as.Date(paste(weather$year[y], &quot;10-01&quot;, sep = &quot;-&quot;))
+  weather$yearWinter[y] &lt;- ifelse(weather$date[y] &gt;= year.margin, 
+                                  weather$year[y] + 1, weather$year[y])
+}
+
+# I then exclude all data points that lie in between May and October because 
+# I don&#39;t need them
+weather &lt;- weather[!(month(weather$date) %in% c(5:9)), ]
+
+# I now add a new DOY variable with negative numbers from October 1st to 
+# December 31st
+weather$doy.n &lt;- 0
+for(y in unique(weather$yearWinter)){
+  weather[weather$yearWinter == y &amp; weather$location == &quot;Washington&quot;, ]$doy.n &lt;- 
+    seq(-91, by = 1, length.out = nrow(weather[weather$yearWinter == y &amp; 
+    weather$location == &quot;Washington&quot;, ]))
+  weather[weather$yearWinter == y &amp; weather$location == &quot;Liestal&quot;, ]$doy.n &lt;- 
+    seq(-91, by = 1, length.out = nrow(weather[weather$yearWinter == y &amp; 
+    weather$location == &quot;Liestal&quot;, ]))
+  weather[weather$yearWinter == y &amp; weather$location == &quot;Kyoto&quot;, ]$doy.n &lt;- 
+    seq(-91, by = 1, length.out = nrow(weather[weather$yearWinter == y &amp; 
+    weather$location == &quot;Kyoto&quot;, ]))
+  weather[weather$yearWinter == y &amp; weather$location == &quot;Vancouver&quot;, ]$doy.n &lt;- 
+    seq(-91, by = 1, length.out = nrow(weather[weather$yearWinter == y &amp; 
+    weather$location == &quot;Vancouver&quot;, ]))
+}
+
+# I now estimate the DRDs. 
+# Illustration for the year 2022 in Liestal: 
+temp22 &lt;- subset(weather, location == &quot;Liestal&quot; &amp; yearWinter == 2022)
+fit22 &lt;- lm(tmax ~ doy.n + I(doy.n^2), temp22)
+coefs22 &lt;- coef(fit22)
+doy.p &lt;- -91: nrow(temp22) - 92
+fit.p &lt;- predict(fit22, newdata = data.frame(doy.n = doy.p))
+fun22 &lt;- function(x){
+  coefs22[1] + coefs22[2]*x + coefs22[3]*x^2
+}
+DRD22 &lt;- as.numeric(optimize(fun22, interval = c(1, 365), maximum = FALSE)[1])
+
+with(temp22, plot(tmax ~ doy.n, ylab = &quot;Maximum Temperature (1/10 °Celsius)&quot;, 
+                  xlab = &quot;Day of the Year&quot;, pch = 19, cex = 0.8, bty = &quot;L&quot;, 
+                  main = &quot;Illustration: 2022 DRD in Liestal&quot;))
+lines(fit.p ~ doy.p, col = &quot;forestgreen&quot;, lwd = 2)
+abline(v = DRD22, col = &quot;red&quot;)
+text(DRD22 +1,  220, &quot;Dormacy Release Date&quot;, cex = 0.6, col = &quot;red&quot;, pos = 4)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Now, I model the DRD for each year in the temperature data set for each of the three locations.</p>
+<pre class="r"><code>for(l in c(&quot;Washington&quot;, &quot;Liestal&quot;, &quot;Kyoto&quot;, &quot;Vancouver&quot;)){
+  DRD &lt;- year &lt;- DRD.t.pred &lt;- NULL
+  weather_Loc &lt;- subset(weather, location == l)
+  for(y in 1:(length(unique(weather_Loc$yearWinter))-1)){
+    year.y &lt;- unique(weather_Loc$yearWinter)[y]
+    temp.year &lt;- weather_Loc[weather_Loc$yearWinter == year.y, ]
+    if(nrow(temp.year) &gt; 200){ # not all years are complete
+      coefs &lt;- coef(lm(tmax ~ doy.n + I(doy.n^2), temp.year))
+      fun &lt;- function(x){
+        coefs[1] + coefs[2]*x + coefs[3]*x^2
+      }
+      DRD[y] &lt;- as.numeric(optimize(fun, interval = c(-91, 200), 
+                                    maximum = FALSE)[1])
+      year[y] &lt;- unique(weather_Loc$yearWinter)[y]
+      DRD.t.pred[y] &lt;- as.numeric(optimize(fun, interval = c(-91, 200), 
+                                           maximum = FALSE)[2]) / 10
+    }
+  }
+  assign(paste(&quot;DRD_&quot;, l, sep = &quot;&quot;), DRD)
+  assign(paste(&quot;DRD.t.pred_&quot;, l, sep = &quot;&quot;), DRD.t.pred)
+  assign(paste(&quot;year_&quot;, l, sep = &quot;&quot;), year)
+}
+
+temp_Wash &lt;- data.frame(year = year_Washington, DRD = DRD_Washington, 
+                        t.pred = DRD.t.pred_Washington)
+# boxplot.stats(temp_Wash$DRD)$out
+temp_Lies &lt;- data.frame(year = year_Liestal, DRD = DRD_Liestal, 
+                        t.pred = DRD.t.pred_Liestal)
+# boxplot.stats(temp_Wash$DRD)$out
+temp_Kyot &lt;- data.frame(year = year_Kyoto, DRD = DRD_Kyoto, 
+                        t.pred = DRD.t.pred_Kyoto)
+# boxplot.stats(temp_Kyot$DRD)$out
+temp_Vanc &lt;- data.frame(year = year_Vancouver, DRD = DRD_Vancouver, 
+                        t.pred = DRD.t.pred_Vancouver)
+# boxplot.stats(temp_Vanc$DRD)$out
+
+temp &lt;- rbind(temp_Wash, temp_Lies, temp_Kyot, temp_Vanc)
+temp$location &lt;- rep(c(&quot;Washington&quot;, &quot;Liestal&quot;, &quot;Kyoto&quot;, &quot;Vancouver&quot;), 
+                     c(nrow(temp_Wash), nrow(temp_Lies), nrow(temp_Kyot), 
+                       nrow(temp_Vanc)))
+
+ggplot(temp, aes(x = year, y = DRD)) +
+  geom_point() +
+  ylim(-5, 30) +
+  facet_grid(~location) +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE, fullrange = TRUE) + 
+  ylab(&quot;Estimated DRD&quot;) + 
+  xlab(&quot;Year&quot;) +
+  ggtitle(&quot;Historic DRDs&quot;) + 
+  theme(plot.title = element_text(face = &quot;bold&quot;, hjust = 0.5)) </code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(temp, aes(x = year, y = t.pred)) +
+  geom_point() +
+  facet_grid(~location) +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE, fullrange = TRUE) +
+  ylim(-5, 15) + 
+  ylab(&quot;Modeled temperature at DRD (°C)&quot;) + 
+  xlab(&quot;Year&quot;) + 
+  ggtitle(&quot;Historic DRD Temperatures&quot;) + 
+  theme(plot.title = element_text(face = &quot;bold&quot;, hjust = 0.5)) </code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+</div>
+<div id="calculate-mean-january-temperature" class="section level2">
+<h2>Calculate Mean January Temperature</h2>
+<p>As an additional predictor, I will use each year’s mean temperature in January. In the following steps, I get this data from the historic weather data set.</p>
+<pre class="r"><code>## Washington, D.C. 
+mean.jan_Wash &lt;- NULL
+year_Wash &lt;- NULL
+weather_Wash &lt;- subset(weather, location == &quot;Washington&quot;)
+weather_Wash_jan &lt;- subset(weather_Wash, month(date) == 1)
+for(y in 1:(length(unique(weather_Wash_jan$yearWinter))-1)){
+  year &lt;- unique(weather_Wash_jan$yearWinter)[y]
+  mean.jan_Wash[y] &lt;- mean(weather_Wash_jan[weather_Wash_jan$yearWinter == year,
+                                            ]$tmax,na.rm = TRUE) / 10
+  year_Wash[y] &lt;- year
+}
+jan_Wash &lt;- data.frame(mean.jan = mean.jan_Wash, year = year_Wash)
+
+## Liestal:
+mean.jan_Lies &lt;- NULL
+year_Lies &lt;- NULL
+weather_Lies &lt;- subset(weather, location == &quot;Liestal&quot;)
+weather_Lies_jan &lt;- subset(weather_Lies, month(date) == 1)
+for(y in 1:(length(unique(weather_Lies_jan$yearWinter))-1)){
+  year &lt;- unique(weather_Lies_jan$yearWinter)[y]
+  mean.jan_Lies[y] &lt;- mean(weather_Lies_jan[weather_Lies_jan$yearWinter == year,
+                                            ]$tmax,na.rm = TRUE) / 10
+  year_Lies[y] &lt;- year
+}
+jan_Lies &lt;- data.frame(mean.jan = mean.jan_Lies, year = year_Lies)
+
+
+## Kyoto: 
+mean.jan_kyot &lt;- NULL
+year_kyot &lt;- NULL
+weather_kyot &lt;- subset(weather, location == &quot;Kyoto&quot;)
+weather_kyot_jan &lt;- subset(weather_kyot, month(date) == 1)
+for(y in 1:(length(unique(weather_kyot_jan$yearWinter))-1)){
+  year &lt;- unique(weather_kyot_jan$yearWinter)[y]
+  mean.jan_kyot[y] &lt;- mean(weather_kyot_jan[weather_kyot_jan$yearWinter == year,
+                                            ]$tmax,na.rm = TRUE) / 10
+  year_kyot[y] &lt;- year
+}
+jan_Kyot &lt;- data.frame(mean.jan = mean.jan_kyot, year = year_kyot)
+
+
+## Vancouver: 
+mean.jan_Vanc &lt;- NULL
+year_Vanc &lt;- NULL
+weather_Vanc &lt;- subset(weather, location == &quot;Vancouver&quot;)
+weather_Vanc_jan &lt;- subset(weather_Vanc, month(date) == 1)
+for(y in 1:(length(unique(weather_Vanc_jan$yearWinter))-1)){
+  year &lt;- unique(weather_Vanc_jan$yearWinter)[y]
+  mean.jan_Vanc[y] &lt;- mean(weather_Vanc_jan[weather_Vanc_jan$yearWinter == year,
+                                            ]$tmax,na.rm = TRUE) / 10
+  year_Vanc[y] &lt;- year
+}
+jan_Vanc &lt;- data.frame(mean.jan = mean.jan_Vanc, year = year_Vanc)
+
+
+temp_Wash &lt;- merge(temp_Wash, jan_Wash, by = &quot;year&quot;)
+temp_Lies &lt;- merge(temp_Lies, jan_Lies, by = &quot;year&quot;)
+temp_Kyot &lt;- merge(temp_Kyot, jan_Kyot, by = &quot;year&quot;)
+temp_Vanc &lt;- merge(temp_Vanc, jan_Vanc, by = &quot;year&quot;)
+temp &lt;- rbind(temp_Wash, temp_Lies, temp_Kyot, temp_Vanc)
+temp$location &lt;- rep(c(&quot;Washington&quot;, &quot;Liestal&quot;, &quot;Kyoto&quot;, &quot;Vancouver&quot;), 
+                     c(nrow(temp_Wash), nrow(temp_Lies), nrow(temp_Kyot), 
+                       nrow(temp_Vanc)))
+
+ggplot(temp, aes(x = year, y = mean.jan)) +
+  geom_point() +
+  facet_grid(~location) +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE, fullrange = TRUE) +
+  ylim(-5, 15) + 
+  ylab(&quot;Mean January temperature (°C)&quot;) + 
+  xlab(&quot;Year&quot;) + 
+  ggtitle(&quot;Historic Mean January Temperatures&quot;) + 
+  theme(plot.title = element_text(face = &quot;bold&quot;, hjust = 0.5)) </code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="estimate-2023-drd" class="section level2">
+<h2>Estimate 2023 DRD</h2>
+<p>Before I can estimate the 2023 bloom dates, I need to estimate this year’s DRD. However, the ghcnd weather data ends in fall 2022, so I looked for more current temperature data online and retrieved free temperature data from <a href="https://www.visualcrossing.com" class="uri">https://www.visualcrossing.com</a>. These data sets include the weather data between 10/01/2022 and 02/01/2023 for each city. <br></p>
+<p>The problem here is that, at the moment, I only have the temperature data until 02/01 which isn’t really late enough to sensibly model the DRD (especially for Kyoto, but to some extent also for the other locations). I hope that this issue will resolve when I repeat the calculation at the end of Febuary with updated temperature data (visualcrossing even offers forecast data if it should still not suffice).</p>
+<div id="washington" class="section level3">
+<h3>1. Washington:</h3>
+<pre class="r"><code>Wash_2023 &lt;- read.csv(&quot;peak-bloom-prediction-main/data/WeatherWashington_2023.csv&quot;, sep = &quot;,&quot;, header = TRUE)
+
+# check whether both data sources match: 
+wGHCN &lt;- subset(weather, location == &quot;Washington&quot; &amp; 
+                  date &gt;= as.Date(&quot;2022-10-01&quot;) &amp; date &lt;=
+                  as.Date(&quot;2022-10-31&quot;))$tmax / 10
+wVC &lt;- subset(Wash_2023, as.Date(datetime) &gt;= as.Date(&quot;2022-10-01&quot;) &amp; as.Date(datetime) &lt;= as.Date(&quot;2022-10-31&quot;))$tempmax
+cor(wGHCN, wVC, use = &quot;complete.obs&quot;) # correlation is pretty low!</code></pre>
+<pre><code>## [1] 0.4456917</code></pre>
+<pre class="r"><code># TODO look into this
+
+Wash_2023$doy &lt;- yday(as.Date(Wash_2023$datetime))
+Wash_2023$doy.n &lt;- -91:32
+Wash_2023$tmax &lt;- Wash_2023$tempmax
+
+# the problem is that I have to little 2023 data to sensibly model the DRD. I will
+# thus use the last 10 years&#39; mean temperature data between March and June to 
+# improve the DRD prediction. However, these values will be weighted less strongly 
+# than the actually observed temperature data. 
+
+yday(as.Date(&quot;2023-03-01&quot;)) </code></pre>
+<pre><code>## [1] 60</code></pre>
+<pre class="r"><code>yday(as.Date(&quot;2023-06-01&quot;))</code></pre>
+<pre><code>## [1] 152</code></pre>
+<pre class="r"><code># I get the 60th - 152nd days of the year; for leap years this is Feb 29th - May 31st, 
+# for other years it is March 1st - June 1st. 
+
+# I now get the mean temperature of the last 10 years for all of these days: 
+mw_Wash &lt;- subset(aggregate(tmax ~ doy, subset(weather_Wash, year &gt;= 2013), mean), 
+                  doy %in% 33:152)
+mw_Wash$tmax &lt;- mw_Wash$tmax / 10
+
+w23_Wash &lt;- Wash_2023[, c(&quot;doy.n&quot;, &quot;tmax&quot;)]
+names(mw_Wash) &lt;- c(&quot;doy.n&quot;, &quot;tmax&quot;)
+w_Wash &lt;- rbind(w23_Wash, mw_Wash)
+
+# fit quadratic regression with specified weights: 
+weights &lt;- rep(c(1, 0.2), c(124, 89))
+fit23_Wash &lt;- lm(tmax ~ doy.n + I(doy.n^2), w_Wash, weights = weights)
+
+coefs23_Wash &lt;- coef(fit23_Wash)
+doy.p &lt;- -91: 152
+fit.p_Wash &lt;- predict(fit23_Wash, newdata = data.frame(doy.n = doy.p))
+fun23_Wash &lt;- function(x){
+  coefs23_Wash[1] + coefs23_Wash[2]*x + coefs23_Wash[3]*x^2
+}
+
+DRD23_Wash &lt;- as.numeric(optimize(fun23_Wash, interval = c(1, 365), 
+                                  maximum = FALSE)[1])
+t.DRD23_Wash &lt;- w_Wash[w_Wash$doy.n == round(DRD23_Wash), ]$tmax
+tpred23_Wash &lt;- as.numeric(optimize(fun23_Wash, interval = c(1, 365), 
+                                    maximum = FALSE)[2])
+with(subset(w_Wash, doy.n &lt;= 60), 
+     plot(tmax ~ doy.n, ylab = &quot;Maximum Temperature (°Celsius)&quot;, 
+                     xlab = &quot;Day of the Year&quot;, pch = 19, cex = 0.8, 
+                     xlim = c(-91, 150), bty = &quot;L&quot;, 
+                     main = &quot;Predicted 2023 DRD: Washington, D.C.&quot;))
+with(subset(w_Wash, doy.n &gt; 60), 
+     points(tmax ~ doy.n, pch = 19, col = alpha(&quot;grey&quot;, alpha = 0.8)))
+lines(fit.p_Wash ~ doy.p, col = &quot;forestgreen&quot;, lwd = 2)
+abline(v = DRD23_Wash, col = &quot;red&quot;)
+text(DRD23_Wash,  20, &quot;Dormacy Release Date&quot;, cex = 0.6, col = &quot;red&quot;, pos = 4)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>DRD_Wash &lt;- c(DRD_Washington, DRD23_Wash) 
+t.pred_Wash &lt;- c(temp_Wash$t.pred, tpred23_Wash)
+
+# Calculate mean January temperature
+j23_Wash &lt;- mean(subset(Wash_2023, as.Date(datetime) &gt;= as.Date(&quot;2023-01-01&quot;) &amp;
+              as.Date(datetime) &lt;= as.Date(&quot;2023-01-31&quot;))$tempmax) </code></pre>
+</div>
+<div id="liestal" class="section level3">
+<h3>2. Liestal:</h3>
+<pre class="r"><code>Lies_2023 &lt;- read.csv(&quot;peak-bloom-prediction-main/data/WeatherLiestal_2023.csv&quot;, 
+                      sep = &quot;,&quot;, header = TRUE)
+
+# check whether both data sources match: 
+wGHCN &lt;- subset(weather, location == &quot;Liestal&quot; &amp; 
+                  date &gt;= as.Date(&quot;2022-10-01&quot;))$tmax / 10
+wVC &lt;- subset(Lies_2023, as.Date(datetime) &gt;= as.Date(&quot;2022-10-01&quot;) &amp; 
+                as.Date(datetime) &lt;= as.Date(&quot;2022-10-31&quot;))$tempmax
+cor(wGHCN, wVC) # very high correlation -&gt; looks good!</code></pre>
+<pre><code>## [1] 0.9794612</code></pre>
+<pre class="r"><code>Lies_2023$doy &lt;- yday(as.Date(Lies_2023$datetime))
+Lies_2023$doy.n &lt;- -91:32
+Lies_2023$tmax &lt;- Lies_2023$tempmax
+
+
+mw_Lies &lt;- subset(aggregate(tmax ~ doy, subset(weather_Lies, year &gt;= 2013), mean), 
+                  doy %in% 33:152)
+mw_Lies$tmax &lt;- mw_Lies$tmax / 10
+
+w23_Lies &lt;- Lies_2023[, c(&quot;doy.n&quot;, &quot;tmax&quot;)]
+names(mw_Lies) &lt;- c(&quot;doy.n&quot;, &quot;tmax&quot;)
+w_Lies &lt;- rbind(w23_Lies, mw_Lies)
+
+# fit quadratic regression with specified weights: 
+weights &lt;- rep(c(1, 0.2), c(124, 89))
+fit23_Lies &lt;- lm(tmax ~ doy.n + I(doy.n^2), w_Lies, weights = weights)
+
+coefs23_Lies &lt;- coef(fit23_Lies)
+doy.p &lt;- -91: 152
+fit.p_Lies &lt;- predict(fit23_Lies, newdata = data.frame(doy.n = doy.p))
+fun23_Lies &lt;- function(x){
+  coefs23_Lies[1] + coefs23_Lies[2]*x + coefs23_Lies[3]*x^2
+}
+
+DRD23_Lies &lt;- as.numeric(optimize(fun23_Lies, interval = c(1, 365), 
+                                  maximum = FALSE)[1])
+t.DRD23_Lies &lt;- w_Lies[w_Lies$doy.n == round(DRD23_Lies), ]$tmax
+tpred23_Lies &lt;- as.numeric(optimize(fun23_Lies, interval = c(1, 365), 
+                                    maximum = FALSE)[2])
+with(subset(w_Lies, doy.n &lt;= 60), 
+     plot(tmax ~ doy.n, ylab = &quot;Maximum Temperature (°Celsius)&quot;, 
+                     xlab = &quot;Day of the Year&quot;, pch = 19, cex = 0.8, 
+                     xlim = c(-91, 150), bty = &quot;L&quot;, 
+                     main = &quot;Predicted 2023 DRD: Liesington, D.C.&quot;))
+with(subset(w_Lies, doy.n &gt; 60), 
+     points(tmax ~ doy.n, pch = 19, col = alpha(&quot;grey&quot;, alpha = 0.8)))
+lines(fit.p_Lies ~ doy.p, col = &quot;forestgreen&quot;, lwd = 2)
+abline(v = DRD23_Lies, col = &quot;red&quot;)
+text(DRD23_Lies,  20, &quot;Dormacy Release Date&quot;, cex = 0.6, col = &quot;red&quot;, pos = 4)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>DRD_Lies &lt;- c(DRD_Liestal, DRD23_Lies) 
+t.pred_Lies &lt;- c(temp_Lies$t.pred, tpred23_Lies)
+
+
+# Calculate mean January temperature: 
+j23_Lies &lt;- mean(subset(Lies_2023, as.Date(datetime) &gt;= as.Date(&quot;2023-01-01&quot;) &amp;
+              as.Date(datetime) &lt;= as.Date(&quot;2023-01-31&quot;))$tempmax) </code></pre>
+</div>
+<div id="kyoto" class="section level3">
+<h3>3. Kyoto:</h3>
+<p>Der Wert für Kyoto macht keinen Sinn, ich gehe aber davon aus, dass das Modell deutlich besser sein wird, wenn ich es Ende Februar nochmal mit den aktuellen Temperaturdaten wiederhole</p>
+<pre class="r"><code>Kyot_2023 &lt;- read.csv(&quot;peak-bloom-prediction-main/data/WeatherKyoto_2023.csv&quot;, 
+                      sep = &quot;,&quot;, header = TRUE)
+
+# check whether both data sources match: 
+wGHCN &lt;- subset(weather, location == &quot;Kyoto&quot; &amp; 
+                  date &gt;= as.Date(&quot;2022-10-01&quot;) &amp; date &lt;=
+                  as.Date(&quot;2022-10-31&quot;))$tmax / 10
+wVC &lt;- subset(Kyot_2023, as.Date(datetime) &gt;= as.Date(&quot;2022-10-01&quot;) &amp; 
+                as.Date(datetime) &lt;= as.Date(&quot;2022-10-31&quot;))$tempmax
+cor(wGHCN, wVC, use = &quot;complete.obs&quot;) # very high correlation -&gt; no problem!</code></pre>
+<pre><code>## [1] 0.9717502</code></pre>
+<pre class="r"><code>Kyot_2023$doy &lt;- yday(as.Date(Kyot_2023$datetime))
+Kyot_2023$doy.n &lt;- -91:32
+Kyot_2023$tmax &lt;- Kyot_2023$tempmax
+
+weather_Kyot &lt;- weather_kyot
+
+mw_Kyot &lt;- subset(aggregate(tmax ~ doy, subset(weather_Kyot, year &gt;= 2013), mean), 
+                  doy %in% 33:152)
+mw_Kyot$tmax &lt;- mw_Kyot$tmax / 10
+
+w23_Kyot &lt;- Kyot_2023[, c(&quot;doy.n&quot;, &quot;tmax&quot;)]
+names(mw_Kyot) &lt;- c(&quot;doy.n&quot;, &quot;tmax&quot;)
+w_Kyot &lt;- rbind(w23_Kyot, mw_Kyot)
+
+# fit quadratic regression with specified weights: 
+weights &lt;- rep(c(1, 0.2), c(124, 89))
+fit23_Kyot &lt;- lm(tmax ~ doy.n + I(doy.n^2), w_Kyot, weights = weights)
+
+coefs23_Kyot &lt;- coef(fit23_Kyot)
+doy.p &lt;- -91: 152
+fit.p_Kyot &lt;- predict(fit23_Kyot, newdata = data.frame(doy.n = doy.p))
+fun23_Kyot &lt;- function(x){
+  coefs23_Kyot[1] + coefs23_Kyot[2]*x + coefs23_Kyot[3]*x^2
+}
+
+DRD23_Kyot &lt;- as.numeric(optimize(fun23_Kyot, interval = c(1, 365), 
+                                  maximum = FALSE)[1])
+t.DRD23_Kyot &lt;- w_Kyot[w_Kyot$doy.n == round(DRD23_Kyot), ]$tmax
+tpred23_Kyot &lt;- as.numeric(optimize(fun23_Kyot, interval = c(1, 365), 
+                                    maximum = FALSE)[2])
+with(subset(w_Kyot, doy.n &lt;= 60), 
+     plot(tmax ~ doy.n, ylab = &quot;Maximum Temperature (°Celsius)&quot;, 
+                     xlab = &quot;Day of the Year&quot;, pch = 19, cex = 0.8, 
+                     xlim = c(-91, 150), bty = &quot;L&quot;, 
+                     main = &quot;Predicted 2023 DRD: Kyotington, D.C.&quot;))
+with(subset(w_Kyot, doy.n &gt; 60), 
+     points(tmax ~ doy.n, pch = 19, col = alpha(&quot;grey&quot;, alpha = 0.8)))
+lines(fit.p_Kyot ~ doy.p, col = &quot;forestgreen&quot;, lwd = 2)
+abline(v = DRD23_Kyot, col = &quot;red&quot;)
+text(DRD23_Kyot,  20, &quot;Dormacy Release Date&quot;, cex = 0.6, col = &quot;red&quot;, pos = 4)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>DRD_Kyot &lt;- c(DRD_Kyoto, DRD23_Kyot) 
+t.pred_Kyot &lt;- c(temp_Kyot$t.pred, tpred23_Kyot)
+
+
+# Calculate mean January temperature
+# 2023: 
+j23_Kyot &lt;- mean(subset(Kyot_2023, as.Date(datetime) &gt;= as.Date(&quot;2023-01-01&quot;) &amp;
+              as.Date(datetime) &lt;= as.Date(&quot;2023-01-31&quot;))$tempmax) </code></pre>
+</div>
+</div>
+<div id="prediction" class="section level2">
+<h2>Prediction</h2>
+<p>After modeling the DRDs, DRD temperatures, and calculating each year’s mean January temperature, I can now predict the 2023 bloom dates. I do this seperately for each city since I want to consider the goodness of fit indices for all cities.</p>
+<div id="washington-1" class="section level3">
+<h3>1. Washington</h3>
+<pre class="r"><code>cherry_Wash &lt;- subset(cherry, location == &quot;washingtondc&quot;)
+# now use data from temperature data set: temp_Lies
+dat_Wash &lt;- merge(cherry_Wash, temp_Wash, by = &quot;year&quot;)
+
+### Different Models
+mYearW &lt;- lm(bloom_doy ~ year, dat_Wash)
+# summary(mYearW) # R^2 = 0.21
+mDRDW &lt;- lm(bloom_doy ~ DRD, dat_Wash)
+# summary(mDRDW) # R^2 = 0.10
+mtpredW &lt;- lm(bloom_doy ~ t.pred, dat_Wash)
+# summary(mtpredW) # R^2 = 0.13
+mjanW &lt;- lm(bloom_doy ~ mean.jan, dat_Wash)
+# summary(mjanW) # R^2 &lt; .01
+mAllW &lt;- lm(bloom_doy ~ year + DRD + t.pred + mean.jan, dat_Wash)
+summary(mAllW) # R^2 = 0.53 -&gt; I will take this model!</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = bloom_doy ~ year + DRD + t.pred + mean.jan, data = dat_Wash)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.7936 -3.2781 -0.1656  2.8032  9.3586 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 355.02299   59.45884   5.971 1.52e-07 ***
+## year         -0.13102    0.03013  -4.348 5.61e-05 ***
+## DRD           0.67743    0.17239   3.930 0.000229 ***
+## t.pred       -2.62054    0.54149  -4.840 1.00e-05 ***
+## mean.jan      0.90523    0.37986   2.383 0.020467 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.725 on 58 degrees of freedom
+## Multiple R-squared:  0.5243, Adjusted R-squared:  0.4915 
+## F-statistic: 15.98 on 4 and 58 DF,  p-value: 7.122e-09</code></pre>
+<pre class="r"><code>plot(bloom_doy ~ year, dat_Wash, cex = 0.5, pch = 19, 
+     ylab = &quot;Full Bloom Day of the Year&quot;, bty = &quot;L&quot;,
+     xlab = &quot;Year&quot;, main = &quot;Best Predictor for Washington, D.C.: Year&quot;)
+abline(mYearW)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code># check prediction accuracy: 
+pbloomW &lt;- predict(mAllW, newdata = data.frame(year = dat_Wash$year, 
+  DRD = dat_Wash$DRD, t.pred = dat_Wash$t.pred, mean.jan = dat_Wash$t.pred))
+rmse(dat_Wash$bloom_doy, pbloomW) # 4.68</code></pre>
+<pre><code>## [1] 4.809874</code></pre>
+<pre class="r"><code>mae(dat_Wash$bloom_doy, pbloomW) # 3.81</code></pre>
+<pre><code>## [1] 3.923448</code></pre>
+<pre class="r"><code>cor(dat_Wash$bloom_doy, pbloomW) # 0.70</code></pre>
+<pre><code>## [1] 0.6907424</code></pre>
+<pre class="r"><code>### Predict Bloom Date 2023
+data23_Wash &lt;- data.frame(year = 2023, DRD = DRD23_Wash, t.pred = tpred23_Wash, 
+                          mean.jan = j23_Wash)
+predict(mAllW, newdata = data23_Wash) # 86.27</code></pre>
+<pre><code>##        1 
+## 86.26796</code></pre>
+<pre class="r"><code>doy_to_date(2023, 86)</code></pre>
+<pre><code>## [1] &quot;2023-03-27&quot;</code></pre>
+<p><span style="color: red;">My prediction for Washington is March 27th 2023</span></p>
+</div>
+<div id="liestal-1" class="section level3">
+<h3>2. Liestal</h3>
+<pre class="r"><code>cherry_lies &lt;- subset(cherry, location == &quot;liestal&quot;)
+# now use data from temperature data set: temp_Lies
+dat_lies &lt;- merge(cherry_lies, temp_Lies, by = &quot;year&quot;)
+
+mYearL &lt;- lm(bloom_doy ~ year, dat_lies)
+# summary(mYearL) # R^2 = 0.25
+mDRDL &lt;- lm(bloom_doy ~ DRD, dat_lies)
+# summary(mDRDL) # R^2 = 0.23
+mtpredL &lt;- lm(bloom_doy ~ t.pred, dat_lies)
+# summary(mtpredL) # R^2 = 0.51
+mjanL &lt;- lm(bloom_doy ~ mean.jan, dat_lies)
+# summary(mjanL) # R^2 = 0.06
+mAllL &lt;- lm(bloom_doy ~ year + DRD + t.pred + mean.jan, dat_lies)
+# summary(mAllL) # R^2 = 0.69
+mAllL2 &lt;- lm(bloom_doy ~ year + DRD * t.pred + mean.jan, dat_lies)
+summary(mAllL2) # R^2 = 0.72 -&gt; I will take this model. </code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = bloom_doy ~ year + DRD * t.pred + mean.jan, data = dat_lies)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -17.3621  -4.1338   0.4921   3.8473  18.7566 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 354.24029   90.72336   3.905 0.000242 ***
+## year         -0.13583    0.04578  -2.967 0.004313 ** 
+## DRD           2.21400    0.56740   3.902 0.000244 ***
+## t.pred       -0.84575    1.53921  -0.549 0.584724    
+## mean.jan      1.45242    0.45923   3.163 0.002452 ** 
+## DRD:t.pred   -0.27454    0.10238  -2.682 0.009451 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.475 on 60 degrees of freedom
+## Multiple R-squared:  0.7227, Adjusted R-squared:  0.6996 
+## F-statistic: 31.27 on 5 and 60 DF,  p-value: 1.599e-15</code></pre>
+<pre class="r"><code># For Liestal, the modeled temperature at DRD is the best predictor: 
+plot(bloom_doy ~ t.pred, dat_lies, cex = 0.5, pch = 19, 
+     ylab = &quot;Full Bloom Day of the Year&quot;, 
+     xlab = &quot;Modeled Temperature at DRD&quot;, 
+     main = &quot;Best Predictor for Liestal: DRD Temperature&quot;,
+     bty = &quot;L&quot;)
+with(dat_lies, text((bloom_doy -1.75) ~ t.pred, labels = year, cex = 0.58))
+abline(mtpredL)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code># check prediction accuracy: 
+pbloomL2 &lt;- predict(mAllL2, newdata = data.frame(year = dat_lies$year, 
+  DRD = dat_lies$DRD, t.pred = dat_lies$t.pred, mean.jan = dat_lies$t.pred))
+rmse(dat_lies$bloom_doy, pbloomL2) # 6.71</code></pre>
+<pre><code>## [1] 6.710888</code></pre>
+<pre class="r"><code>mae(dat_lies$bloom_doy, pbloomL2) # 5.06</code></pre>
+<pre><code>## [1] 5.055577</code></pre>
+<pre class="r"><code>cor(dat_lies$bloom_doy, pbloomL2) # 0.82</code></pre>
+<pre><code>## [1] 0.8213246</code></pre>
+<pre class="r"><code>### Predict Bloom Date 2023
+data23_Lies &lt;- data.frame(year = 2023, DRD = DRD23_Lies, t.pred = tpred23_Lies, 
+                          mean.jan = j23_Lies)
+predict(mAllL2, newdata = data23_Lies) # 92.70</code></pre>
+<pre><code>##        1 
+## 92.67955</code></pre>
+<pre class="r"><code>doy_to_date(2023, 92)</code></pre>
+<pre><code>## [1] &quot;2023-04-02&quot;</code></pre>
+<p><span style="color: red;">My prediction for Liestal is April 2nd 2023</span></p>
+</div>
+<div id="kyoto-1" class="section level3">
+<h3>3. Kyoto</h3>
+<pre class="r"><code>cherry_kyot &lt;- subset(cherry, location == &quot;kyoto&quot;)
+# now use data from temperature data set: temp_kyot
+dat_kyot &lt;- merge(cherry_kyot, temp_Kyot, by = &quot;year&quot;)
+
+mYearK &lt;- lm(bloom_doy ~ year, dat_kyot)
+# summary(mYearK) # R^2 = 0.28
+mDRDK &lt;- lm(bloom_doy ~ DRD, dat_kyot)
+# summary(mDRDK) # R^2 = 0.30
+mtpredK &lt;- lm(bloom_doy ~ t.pred, dat_kyot)
+# summary(mtpredK) # R^2 = 0.05
+mjanK &lt;- lm(bloom_doy ~ mean.jan, dat_kyot)
+# summary(mjanK) # R^2 = 0.06
+mAllK &lt;- lm(bloom_doy ~ year + DRD + t.pred + mean.jan, dat_kyot)
+# summary(mAllK) # R^2 = 0.68
+mAllK2 &lt;- lm(bloom_doy ~ year + DRD * t.pred + mean.jan, dat_kyot)
+summary(mAllK2) # R^2 = 0.70 -&gt; I will take this model. </code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = bloom_doy ~ year + DRD * t.pred + mean.jan, data = dat_kyot)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.8400 -1.5198  0.1328  1.4343  4.3702 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 175.06965   33.73361   5.190 2.55e-06 ***
+## year         -0.07431    0.01341  -5.542 6.76e-07 ***
+## DRD           4.08154    0.92255   4.424 4.07e-05 ***
+## t.pred        4.20800    2.18631   1.925 0.058934 .  
+## mean.jan      1.28888    0.37790   3.411 0.001155 ** 
+## DRD:t.pred   -0.34458    0.09896  -3.482 0.000926 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.134 on 61 degrees of freedom
+## Multiple R-squared:  0.8043, Adjusted R-squared:  0.7882 
+## F-statistic: 50.13 on 5 and 61 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>plot(bloom_doy ~ DRD, dat_kyot, cex = 0.5, pch = 19, 
+     ylab = &quot;Full Bloom Day of the Year&quot;, main = &quot;Best Predictor for Kyoto: DRD&quot;,
+     xlab = &quot;Dormacy Release Date&quot;, bty = &quot;n&quot;)
+box(bty = &quot;L&quot;)
+with(dat_kyot, text((bloom_doy -1) ~ DRD, labels = year, cex = 0.58))
+abline(mDRDK)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code># check prediction accuracy: 
+pbloomK &lt;- predict(mAllK2, newdata = data.frame(year = dat_kyot$year, 
+  DRD = dat_kyot$DRD, t.pred = dat_kyot$t.pred, mean.jan = dat_kyot$t.pred))
+rmse(dat_kyot$bloom_doy, pbloomK) # 2.30</code></pre>
+<pre><code>## [1] 2.301066</code></pre>
+<pre class="r"><code>mae(dat_kyot$bloom_doy, pbloomK) # 1.90</code></pre>
+<pre><code>## [1] 1.80004</code></pre>
+<pre class="r"><code>cor(dat_kyot$bloom_doy, pbloomK) # 0.87</code></pre>
+<pre><code>## [1] 0.8745281</code></pre>
+<pre class="r"><code>### Predict Bloom Date 2023 
+data23_Kyot &lt;- data.frame(year = 2023, DRD = DRD23_Kyot, t.pred = tpred23_Kyot, 
+                          mean.jan = j23_Kyot)
+predict(mAllK2, newdata = data23_Kyot) # 94.04</code></pre>
+<pre><code>##        1 
+## 94.04291</code></pre>
+<pre class="r"><code>doy_to_date(2023, 94)</code></pre>
+<pre><code>## [1] &quot;2023-04-04&quot;</code></pre>
+<p><span style="color: red;"> My prediction for Kyoto is April 4th 2023. </span></p>
+</div>
+</div>
+</div>
+<div id="step-2-predict-2023-vancouver-bloom-date" class="section level1">
+<h1>Step 2: Predict 2023 Vancouver Bloom Date</h1>
+<p>For Vancouver, we do not have historic bloom dates. I therefore try to predict these dates from the USA NPN dataset. To evaluate how good this works, I first do the same for Washington and compare the predicted with the actual dates.</p>
+<div id="to-estimate-model-fit-model-historic-bloom-dates-in-washington-d.c." class="section level2">
+<h2>To estimate model fit: Model historic bloom dates in Washington, D.C.</h2>
+<pre class="r"><code>dat &lt;- read.csv(&quot;peak-bloom-prediction-main/data/USA-NPN_individual_phenometrics_data.csv&quot;)
+dat$year &lt;- dat$First_Yes_Year
+dat$Species &lt;- as.factor(dat$Species)
+m_wash &lt;- lm(First_Yes_DOY ~ year + Latitude + Longitude + 
+               Elevation_in_Meters + Species, dat)
+# get washigton mean winter (Dec - Feb) temperature for these years: 
+w_wash &lt;- subset(weather, location == &quot;Washington&quot;)
+w_wash &lt;- subset(w_wash, month(date) %in% c(12, 1, 2))
+data_wash &lt;- data.frame(year = unique(dat$year), Latitude = 38.8853, 
+                        Longitude = -77.0386, Elevation_in_Meters = 0, 
+                        Species = &quot;yedoensis&quot;)
+doy.pred &lt;- predict(m_wash, newdata = data_wash)
+doy.actual &lt;- subset(cherry, year %in% unique(dat$year) &amp; location == &quot;washingtondc&quot;)$bloom_doy
+
+doy &lt;- data.frame(doy.pred = doy.pred, doy.actual = doy.actual, 
+                  year = unique(dat$year))
+cor(doy.pred, doy.actual) # 0.19</code></pre>
+<pre><code>## [1] 0.1904998</code></pre>
+<pre class="r"><code>rmse(doy.pred, doy.actual) # 7.80</code></pre>
+<pre><code>## [1] 7.803118</code></pre>
+<pre class="r"><code>mae(doy.pred, doy.actual) # 6.85</code></pre>
+<pre><code>## [1] 6.85078</code></pre>
+<pre class="r"><code>plot(doy.pred ~ year, doy, ylim = c(80, 100), pch = 19, ylab = 
+       &quot;Bloom DOY (modeled / actual)&quot;, xlab = &quot;Year&quot;, bty = &quot;L&quot;, 
+     main = &quot;Modeled vs. actual bloom dates: Wahsington, D.C.&quot;)
+points(doy.actual ~ year, doy, col = &quot;red&quot;, pch = 19)
+arrows(x0 = doy$year, x1 = doy$year, y0 = doy$doy.pred, y1 = doy$doy.actual, 
+      length = 0, col = &quot;red&quot;, lty = &quot;dashed&quot;)
+points(doy.pred ~ year, doy, col = &quot;black&quot;, pch = 19)
+legend(&quot;topright&quot;, legend = c(&quot;predicted&quot;, &quot;actual&quot;), title = &quot;Washington D.C. Bloom DOY&quot;, bty = &quot;n&quot;, col = c(&quot;black&quot;, &quot;red&quot;), pch = 19, cex = 0.6)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>The predictions are on average wrong by 9 days which isn’t very good. However, I tried a few different things and nothing seemed to work better, so I will go with it. <br></p>
+<p>I can now estimate the historic bloom dates in Vancouver from the available data.</p>
+</div>
+<div id="model-historic-bloom-dates-in-vancouver" class="section level2">
+<h2>Model historic bloom dates in Vancouver</h2>
+<pre class="r"><code>m_vanc &lt;- lm(First_Yes_DOY ~ year + Latitude + Longitude + 
+               Elevation_in_Meters + Species, dat)
+data_vanc &lt;- data.frame(year = unique(dat$year), Latitude = 49.2237, 
+                        Longitude =  -123.1636, Elevation_in_Meters = 24, 
+                        Species = &quot;yedoensis&quot;)
+doy.pred &lt;- predict(m_vanc, newdata = data_vanc)
+doy.pred</code></pre>
+<pre><code>##        1        2        3        4        5        6        7        8 
+## 110.6716 110.3165 109.9614 109.6063 109.2512 108.8962 108.5411 108.1860 
+##        9       10       11       12       13 
+## 107.8309 107.4758 107.1208 106.7657 106.4106</code></pre>
+<pre class="r"><code>data_vanc$bloom_doy &lt;- doy.pred</code></pre>
+<p>With these modeled bloom dates, I can now estimate the 2023 bloom date like I did for the other locations. But first, I have to estimate the Vancouver DRDs and calculate the past mean temperatures for January.</p>
+</div>
+<div id="estimate-2023-drd-and-mean-january-temperature" class="section level2">
+<h2>Estimate 2023 DRD and mean January temperature:</h2>
+<pre class="r"><code>Vanc_2023 &lt;- read.csv(&quot;peak-bloom-prediction-main/data/WeatherVancouver_2023.csv&quot;, sep = &quot;,&quot;, header = TRUE)
+
+# check whether both data sources match: 
+wGHCN &lt;- subset(weather, location == &quot;Vancouver&quot; &amp; 
+                  date &gt;= as.Date(&quot;2022-10-01&quot;) &amp; date &lt;=
+                  as.Date(&quot;2022-10-31&quot;))$tmax / 10
+wVC &lt;- subset(Vanc_2023, as.Date(datetime) &gt;= as.Date(&quot;2022-10-01&quot;) &amp; as.Date(datetime) &lt;= as.Date(&quot;2022-10-31&quot;))$tempmax
+cor(wGHCN, wVC, use = &quot;complete.obs&quot;) # correlation is very high -&gt; everything okay!</code></pre>
+<pre><code>## [1] 0.978233</code></pre>
+<pre class="r"><code>Vanc_2023$doy &lt;- yday(as.Date(Vanc_2023$datetime))
+Vanc_2023$doy.n &lt;- -91:32
+Vanc_2023$tmax &lt;- Vanc_2023$tempmax
+
+mw_Vanc &lt;- subset(aggregate(tmax ~ doy, subset(weather_Vanc, year &gt;= 2013), mean), 
+                  doy %in% 33:152)
+mw_Vanc$tmax &lt;- mw_Vanc$tmax / 10
+
+w23_Vanc &lt;- Vanc_2023[, c(&quot;doy.n&quot;, &quot;tmax&quot;)]
+names(mw_Vanc) &lt;- c(&quot;doy.n&quot;, &quot;tmax&quot;)
+w_Vanc &lt;- rbind(w23_Vanc, mw_Vanc)
+
+# fit quadratic regression with specified weights: 
+weights &lt;- rep(c(1, 0.2), c(124, 89))
+fit23_Vanc &lt;- lm(tmax ~ doy.n + I(doy.n^2), w_Vanc, weights = weights)
+
+coefs23_Vanc &lt;- coef(fit23_Vanc)
+doy.p &lt;- -91: 152
+fit.p_Vanc &lt;- predict(fit23_Vanc, newdata = data.frame(doy.n = doy.p))
+fun23_Vanc &lt;- function(x){
+  coefs23_Vanc[1] + coefs23_Vanc[2]*x + coefs23_Vanc[3]*x^2
+}
+
+DRD23_Vanc &lt;- as.numeric(optimize(fun23_Vanc, interval = c(1, 365), 
+                                  maximum = FALSE)[1])
+t.DRD23_Vanc &lt;- w_Vanc[w_Vanc$doy.n == round(DRD23_Vanc), ]$tmax
+tpred23_Vanc &lt;- as.numeric(optimize(fun23_Vanc, interval = c(1, 365), 
+                                    maximum = FALSE)[2])
+with(subset(w_Vanc, doy.n &lt;= 60), 
+     plot(tmax ~ doy.n, ylab = &quot;Maximum Temperature (°Celsius)&quot;, 
+                     xlab = &quot;Day of the Year&quot;, pch = 19, cex = 0.8, 
+                     xlim = c(-91, 150), bty = &quot;L&quot;, 
+                     main = &quot;Predicted 2023 DRD: Vancington, D.C.&quot;))
+with(subset(w_Vanc, doy.n &gt; 60), 
+     points(tmax ~ doy.n, pch = 19, col = alpha(&quot;grey&quot;, alpha = 0.8)))
+lines(fit.p_Vanc ~ doy.p, col = &quot;forestgreen&quot;, lwd = 2)
+abline(v = DRD23_Vanc, col = &quot;red&quot;)
+text(DRD23_Vanc,  20, &quot;Dormacy Release Date&quot;, cex = 0.6, col = &quot;red&quot;, pos = 4)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code>DRD_Vanc &lt;- c(DRD_Vancouver, DRD23_Vanc) 
+t.pred_Vanc &lt;- c(temp_Vanc$t.pred, tpred23_Vanc)
+
+# Calculate mean January temperature
+j23_Vanc &lt;- mean(subset(Vanc_2023, as.Date(datetime) &gt;= as.Date(&quot;2023-01-01&quot;) &amp;
+              as.Date(datetime) &lt;= as.Date(&quot;2023-01-31&quot;))$tempmax) </code></pre>
+</div>
+<div id="predict-2023-bloom-date-in-vancouver" class="section level2">
+<h2>Predict 2023 Bloom Date in Vancouver</h2>
+<p>I now have all the data to predict the 2023 bloom date in Vancouver.</p>
+<pre class="r"><code>dat_Vanc &lt;- merge(data_vanc, temp_Vanc, by = &quot;year&quot;)
+
+### Different Models
+mYearV &lt;- lm(bloom_doy ~ year, dat_Vanc)
+# summary(mYearV) # R^2 = 1
+# This leads to a perfect fit since the bloom_doys themselves are predicted with 
+# year as only varying predictor
+mDRDV &lt;- lm(bloom_doy ~ DRD, dat_Vanc)
+# summary(mDRDV) # R^2 &lt;.01
+mtpredV &lt;- lm(bloom_doy ~ t.pred, dat_Vanc)
+# summary(mtpredV) # R^2 = 0.04
+mjanV &lt;- lm(bloom_doy ~ mean.jan, dat_Vanc)
+# summary(mjanV) # R^2 = .05
+mAllV &lt;- lm(bloom_doy ~ DRD * t.pred + mean.jan, dat_Vanc)
+summary(mAllV) # R^2 = 0.21</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = bloom_doy ~ DRD * t.pred + mean.jan, data = dat_Vanc)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.7354 -0.9772 -0.1433  1.1972  1.6510 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  97.8395    12.2515   7.986 4.42e-05 ***
+## DRD           0.7078     0.8555   0.827    0.432    
+## t.pred        2.2078     1.8068   1.222    0.257    
+## mean.jan     -0.5672     0.5020  -1.130    0.291    
+## DRD:t.pred   -0.1070     0.1212  -0.883    0.403    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.508 on 8 degrees of freedom
+## Multiple R-squared:  0.2072, Adjusted R-squared:  -0.1892 
+## F-statistic: 0.5227 on 4 and 8 DF,  p-value: 0.7225</code></pre>
+<pre class="r"><code># I will use the model with everything but year as predictors. 
+
+plot(bloom_doy ~ mean.jan, dat_Vanc, cex = 0.5, pch = 19, 
+     ylab = &quot;Full Bloom Day of the Year&quot;, 
+     xlab = &quot;Mean January Temperature&quot;, bty = &quot;L&quot;, 
+     main = &quot;Best Predictor for Vancouver: Mean January Temperature&quot;)
+abline(mjanV)</code></pre>
+<p><img src="Cherry_Blossom_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code># check prediction accuracy: 
+pbloomV &lt;- predict(mAllV, newdata = data.frame(year = dat_Vanc$year, 
+  DRD = dat_Vanc$DRD, t.pred = dat_Vanc$t.pred, mean.jan = dat_Vanc$t.pred))
+rmse(dat_Vanc$bloom_doy, pbloomV) # 1.32</code></pre>
+<pre><code>## [1] 1.324166</code></pre>
+<pre class="r"><code>mae(dat_Vanc$bloom_doy, pbloomV) # 1.16 </code></pre>
+<pre><code>## [1] 1.160269</code></pre>
+<pre class="r"><code>cor(dat_Vanc$bloom_doy, pbloomV) #0.26</code></pre>
+<pre><code>## [1] 0.2683932</code></pre>
+<pre class="r"><code># of course, this needs to be interpreted with caution, since the DV (past blooom
+# dates) are not the real ones. 
+
+### Predict Bloom Date 2023
+data23_Vanc &lt;- data.frame(year = 2023, DRD = DRD23_Vanc, t.pred = tpred23_Vanc, 
+                          mean.jan = j23_Vanc)
+predict(mYearV, newdata = data23_Vanc) # 1105.7</code></pre>
+<pre><code>##        1 
+## 105.7004</code></pre>
+<pre class="r"><code>doy_to_date(2023, 105)</code></pre>
+<pre><code>## [1] &quot;2023-04-15&quot;</code></pre>
+<p><span style="color: red;"> My prediction for Vancouver is April 15th, 2023. </span></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
